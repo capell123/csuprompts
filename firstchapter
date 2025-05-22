@@ -1,0 +1,72 @@
+<meta charset="UTF-8">
+  <title>First Chapter Story Creation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #f8f8fa;
+      font-family: Arial, sans-serif;
+      padding: 40px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      margin-bottom: 24px;
+      font-size: 2em;
+      color: #22284a;
+      text-align: center;
+    }
+    .copy-btn {
+      padding: 16px 36px;
+      font-size: 1.1em;
+      border-radius: 7px;
+      border: none;
+      background: #0074e0;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      outline: none;
+    }
+    .copy-btn:active, .copy-btn:focus {
+      background: #005bb5;
+    }
+    .hidden-prompt {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+    }
+  </style>
+
+
+  <h2>First Chapter Story Creation</h2>
+  <button class="copy-btn" id="copyPromptBtn" onclick="copyPrompt()">Copy Prompt</button>
+  <textarea id="promptText" class="hidden-prompt" readonly="">Tell me that the hard work on this Core Story is done! Tell me briefly but specifically why it’s such a big deal, bearing in mind your limited knowledge of my target audience.  Now, we’re going to really see what we can lear from it. Tell me you’d like to just discuss some thoughts on what was going on under the surface for me here. Make it clear that I don’t need to worry right now about how this will be applied, or used in the real world. This is just for my reference only. Look at my finalised First Chapter Core Story, and put your innovative, business psychologist hat on. Identify key driving forces, recurring patterns, and emotional motivators that defined this early phase of my journey. Walk the line between conflicting positive and negative aspects of what was happening. Stay firmly within the boundaries of this core story - what fundamentally made me tick at this stage, without considering my later transformations or evolutions! What might really have been driving me beneath the surface here? I want you to generally remain positive - and get me excited about new discoveries. But also, if relevant, suggest potential barriers I may have been smacking against, without even realising it. Just put your responses in the chat. Write these as though you’re talking to me, and asking my opinion on your initial thoughts, rather than dropping down absolute truths, so we can arrive at a mutual conclusion. I’d like you to draw out insights that I myself might never have realised where happening.  What was really going on under the hood?? Don’t frame these as cut-and-dried answers; After all, I’ve only given you an incomplete picture. Give me no more than your THREE strongest insights. The goal here is to illuminate and inspire, not to put me in a box or define me as a person. Encourage me to respond to the options you gave - ask me to touch on what feels resonant or powerful, and to flag anything that feels totally on the wrong path. Then rework your answers in the first person based on my feedback, and don’t lose the nuance and detail! There should be a nice paragraph for each of the three points. Resist the urge to connect these explicitly to what I’m doing now - keep things in the context of this core story. The aim is to have three nice statements in the first person that you will then encourage me to drop into the ‘Under the surface’ box in my Miro board, and then ask me to grab the next key prompt from the CSU hub. No need to ask me to take a break now - let’s keep this rolling!
+  </textarea>
+  <script>
+    function copyPrompt() {
+      const btn = document.getElementById('copyPromptBtn');
+      const prompt = document.getElementById('promptText');
+      prompt.select();
+      prompt.setSelectionRange(0, 99999); // For mobile devices
+
+      try {
+        document.execCommand('copy');
+        btn.innerHTML = 'COPIED &#10003;';
+        btn.style.background = '#249e59';
+        setTimeout(() => {
+          btn.innerHTML = 'Copy Prompt';
+          btn.style.background = '#0074e0';
+        }, 1500);
+      } catch (err) {
+        btn.innerHTML = 'Error copying';
+        btn.style.background = '#c0392b';
+        setTimeout(() => {
+          btn.innerHTML = 'Copy Prompt';
+          btn.style.background = '#0074e0';
+        }, 1500);
+      }
+    }
+  </script>
