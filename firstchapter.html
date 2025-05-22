@@ -1,0 +1,88 @@
+<meta charset="UTF-8">
+  <title>Copy Prompt Widget</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      /* === CHANGE YOUR BUTTON COLOR HERE === */
+      --button-color: #ffa500;  /* <---- change this hex for your preferred color! */
+      --copied-color: #249e59;
+      --error-color: #c0392b;
+    }
+    body {
+      background: #ffa500;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .copy-btn {
+      padding: 16px 36px;
+      font-size: 1.1em;
+      border-radius: 7px;
+      border: none;
+      background: var(--button-color);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .copy-btn.copied {
+      background: var(--copied-color); /* Color when copied */
+    }
+    .copy-btn.error {
+      background: var(--error-color); /* Color when error */
+    }
+    .hidden-prompt {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+    }
+  </style>
+
+
+
+  <button class="copy-btn" id="copyPromptBtn" onclick="copyPrompt()">
+    <!-- === CHANGE YOUR BUTTON TEXT HERE === -->
+    Sconner
+  </button>
+
+  <textarea id="promptText" class="hidden-prompt" readonly="">&lt;!-- === PASTE YOUR PROMPT BETWEEN THIS LINE AND THE ONE BELOW === --&gt;
+PUT YOUR PROMPT HERE!
+&lt;!-- === STOP PASTING HERE === --&gt;
+  </textarea>
+
+  <script>
+    // === CHANGE YOUR BUTTON TEXT HERE (must match above for consistency) ===
+    const originalBtnText = 'Sconner';
+
+    function copyPrompt() {
+      const btn = document.getElementById('copyPromptBtn');
+      const prompt = document.getElementById('promptText');
+      prompt.select();
+      prompt.setSelectionRange(0, 99999); // For mobile devices
+
+      try {
+        document.execCommand('copy');
+        btn.innerHTML = 'Copied! &#10003;'; // "Copied!" and a tick
+        btn.classList.remove('error');
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalBtnText;
+          btn.classList.remove('copied');
+        }, 1500);
+      } catch (err) {
+        btn.innerHTML = 'Error copying';
+        btn.classList.remove('copied');
+        btn.classList.add('error');
+        setTimeout(() => {
+          btn.innerHTML = originalBtnText;
+          btn.classList.remove('error');
+        }, 1500);
+      }
+    }
+  </script>
